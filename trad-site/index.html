@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moja stran</title>
+  </head>
+  <body>
+    <h1>Naslov moje strani</h1>
+
+    <br />
+
+    <p>Dobrodošli na mojo spletno stran!</p>
+
+    <div id="display1">{ime}</div>
+    <div id="display2">Tukaj bo prikazano vaše ime.</div>
+    <div id="display3">Tukaj bo prikazano vaše ime.</div>
+    <div id="display4">Tukaj bo prikazano vaše ime.</div>
+    <div id="display5">Tukaj bo prikazano vaše ime.</div>
+    <div id="display6">Tukaj bo prikazano vaše ime.</div>
+    <div id="display7">Tukaj bo prikazano vaše ime.</div>
+    <br />
+
+    <input type="text" id="user" placeholder="Vnesi ime" />
+    <br />
+    <button id="apply">Apply</button>
+
+    <script>
+      const button = document.getElementById('apply');
+      const input = document.getElementById('user');
+      const display1 = document.getElementById('display1');
+      const display2 = document.getElementById('display2');
+      const display3 = document.getElementById('display3');
+      const display4 = document.getElementById('display4');
+
+      button.addEventListener('click', () => {
+        const name = input.value;
+        display1.textContent = `Pozdravljen, ${name}!`;
+        display2.textContent = `Pozdravljen, ${name}!`;
+        display3.textContent = `Pozdravljen, ${name}!`;
+        display4.textContent = `Pozdravljen, ${name}!`;
+      });
+    </script>
+  </body>
+</html>

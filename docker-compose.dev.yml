@@ -1,0 +1,15 @@
+services:
+  modern-web-lab-dev:
+    container_name: modern-web-lab-dev
+    working_dir: /usr/src/app
+    image: node:20-alpine
+    volumes:
+      - ./next-site:/usr/src/app
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+    tty: true
+    # This command checks if package.json exists, installs dependencies, and starts the dev server; otherwise, it keeps the container running.
+    command: sh -c "[ -f package.json ] && (npm install && npm run dev) || tail -f /dev/null"

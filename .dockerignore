@@ -1,0 +1,40 @@
+# -------------------------
+# OS / editor junk
+# -------------------------
+.DS_Store
+Thumbs.db
+.vscode
+.idea
+
+# -------------------------
+# Git / VCS
+# -------------------------
+.git
+.gitignore
+
+# -------------------------
+# Logs
+# -------------------------
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# -------------------------
+# Next.js build artifacts
+# (only inside the app folder)
+# -------------------------
+next-site/node_modules
+next-site/.next
+next-site/out
+next-site/dist
+next-site/.turbo
+next-site/coverage
+
+# -------------------------
+# Env files (local/dev/test)
+# keep prod env if you need it at build time
+# -------------------------
+next-site/.env.local
+next-site/.env.development*
+next-site/.env.test*
+# next-site/.env.production   # <- uncomment to exclude this too

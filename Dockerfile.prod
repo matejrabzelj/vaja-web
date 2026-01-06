@@ -1,0 +1,48 @@
+# Dockerfile.prod
+
+# ---------- Build stage ----------
+FROM node:20-alpine AS builder
+
+# Optional: fix some native deps issues on Alpine
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /usr/src/app
+
+# Only copy package files first (better caching)
+COPY ./next-site/package*.json ./
+
+# Install dependencies (CI ensures clean, reproducible install)
+RUN npm ci
+
+# Now copy the rest of the app
+COPY ./next-site/. .
+
+# Build the Next.js app for production
+ENV NODE_ENV=production
+RUN npm run build
+
+# ---------- Runtime stage ----------
+FROM node:20-alpine AS runner
+
+WORKDIR /usr/src/app
+
+ENV NODE_ENV=production
+ENV PORT=3000
+
+# Copy only what we need at runtime
+COPY --from=builder /usr/src/app/package*.json ./
+COPY --from=builder /usr/src/app/.next ./.next
+COPY --from=builder /usr/src/app/public ./public
+COPY --from=builder /usr/src/app/node_modules ./node_modules
+
+# Optional: non-root user for better security
+# (you can skip this if you don't want to bother with fs permissions)
+# RUN addgroup -g 1001 -S nodejs
+# RUN adduser -S nextjs -u 1001
+# USER nextjs
+
+EXPOSE 3000
+
+# Start Next.js in production mode
+CMD ["npm", "run", "start", "--", "-H", "0.0.0.0", "-p", "3000"]
+# (This assumes "start": "next start" in package.json)

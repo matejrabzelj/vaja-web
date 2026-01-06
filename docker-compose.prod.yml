@@ -1,0 +1,14 @@
+services:
+  modern-web-lab-prod:
+    container_name: modern-web-lab-prod
+    build:
+      context: .
+      dockerfile: ./Dockerfile.prod
+    ports:
+      - '3000:3000'
+    environment:
+      # Make sure runtime is prod; this can override what's in .env.production if needed
+      NODE_ENV: production
+      PORT: 3000
+    # No volumes: we want an immutable image in prod
+    restart: unless-stopped
