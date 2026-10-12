@@ -2,13 +2,14 @@
 
 ## 0. Overview
 
-This lab introduces students to **modern web development** through:
+This lab recaps web basics and introduces students to **modern web development** through:
 
 - A short theoretical introduction:
   - From classic multi-page websites to React-based apps
   - React fundamentals: components, declarative UI, virtual DOM
   - Next.js fundamentals: routing, server vs client components, server actions
   - REST APIs vs server actions (and where each shines)
+
 - A hands-on lab with **Next.js**:
   - A **simple website** with some simple **components**
   - A **client-side component** that calls a **public REST API** to display a “message of the day”
@@ -48,7 +49,17 @@ By the end of the lab, students should:
 
 ## 3. Theory Intro (30 min) – Talking Points
 
-### 3.1 Classic Web vs Modern Web
+### 3.1 Web Basics
+
+- Client-server model
+- Layered overview: MAC (Network Access), IP (Internet), TLS (Transport), DNS/HTTP/etc. (Application)
+- Multi-tenancy, virtualization
+- Scalability, orchestration
+- Security, WAF, cloud WAF
+
+---
+
+### 3.2 Classic Web vs Modern Web
 
 - **Classic model:**
   - Server generates HTML (e.g., PHP, JSP, ASP.NET).
@@ -69,9 +80,16 @@ Key ideas:
 - The **DOM (Document Object Model)** is the in-memory tree of elements.
 - JS can manipulate the DOM, but doing this manually at scale is hard → _enter React_.
 
+Development:
+
+- You understand the underlying concepts and architectural approaches
+- You conceptualize the product, define features, limitations, technology selection, and security boundaries
+- Code-completion models, LLMs, and agents do the heavy lifting with your approval
+- You are responsible for formal verification, test definition, reviewing, and security
+
 ---
 
-### 3.2 React Fundamentals
+### 3.3 React Fundamentals
 
 **Main idea:**
 
@@ -103,7 +121,7 @@ Explanation:
 
 ---
 
-### 3.3 Next.js Fundamentals
+### 3.4 Next.js Fundamentals
 
 **React** is only the UI library (mostly client-side).  
 **Next.js** is a **React framework** that adds:
@@ -130,12 +148,11 @@ Explanation:
 
 ---
 
-### 3.4 REST API vs Server Actions
+### 3.5 REST API vs Server Actions
 
 Explain both as ways to talk to server logic:
 
 - **REST API:**
-
   - You expose HTTP endpoints (e.g. `GET /api/todos`, `POST /api/todos`).
   - Clients (browser, mobile app, other services) send requests and get JSON.
   - Independent of the frontend framework.
@@ -153,7 +170,7 @@ For students:
 
 ---
 
-### 3.5 CI/CD (Very Brief)
+### 3.6 CI/CD (Very Brief)
 
 - **Git** as the collaboration backbone.
 - **CI/CD pipeline**:
@@ -181,7 +198,7 @@ We aim for something like:
 modern-web-lab/
   README.md
   docker-compose.yml
-  spletna-stran/
+  next-site/
     app/
       page.tsx
       podstran/
@@ -201,7 +218,7 @@ modern-web-lab/
 Examine the `docker-compose.yml`.
 
 - The file creates a new Linux container from Node.js 20 image.
-- Mounts the directory `./spletna-stran` into `/usr/src/app` inside the container.
+- Mounts the directory `./next-site` into `/usr/src/app` inside the container.
 - Exposes port 3000 in the container (Next.js dev server) to port 3000 on your computer.
 - The container then either autostart the development Next.js webserver or waits for you to create a new project (if starting it for the first time).
 
@@ -256,19 +273,16 @@ Then, open the browser at `http://localhost:3000`. You should see the default Ne
 > Note: You can install React Dev Tools in Chrome to help you with debugging.
 
 - Directory structure and app router
-
   - Layout
   - Homepage
   - Subpages
 
 - Page structure
-
   - Notice the JSX/TSX
   - Everything is a component
   - Server components by default
 
 - Create simple website
-
   - Replace homepage content
   - Create a subpage
   - Link pages together
@@ -276,38 +290,31 @@ Then, open the browser at `http://localhost:3000`. You should see the default Ne
   - Use Tailwinds CSS
 
 - Create your reusable components
-
   - Make a button
   - Make it use props
 
 - What do you notice in regard to website refreshing?
-
   - Explain using layout.tsx
   - Are the pages SSR or CSR?
 
 ## 7. REACTivity (React Hooks), API Calls / Server Actions
 
 - Hooks
-
   - Demonstrate useState with inputs
   - Demonstrate useEffect with inputs
 
 - REST APIs
-
   - Fetch quote(s) from `https://motivational-spark-api.vercel.app/api/quotes/random(/N)`
   - Turn it into a component
 
 - Client Side vs. Server Side
-
   - Simple password login
   - API Call vs. Server Action
 
 - ShadCN
-
   - Make it beautiful
 
 - Deploy to prod
-
   - Move password to .env
 
 - Vibe code

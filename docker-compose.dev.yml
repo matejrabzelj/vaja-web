@@ -2,11 +2,11 @@ services:
   modern-web-lab-dev:
     container_name: modern-web-lab-dev
     working_dir: /usr/src/app
-    image: node:20-alpine
+    image: node:26-alpine
     volumes:
       - ./next-site:/usr/src/app
     ports:
-      - "3000:3000"
+      - '3000:3000'
     environment:
       NODE_ENV: development
       PORT: 3000
